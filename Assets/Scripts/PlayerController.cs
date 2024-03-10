@@ -1,10 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Score score;
+
     public Camera playerCamera;
+
+    public Color highlightColor = Color.red; // Цвет подсветки
+
     public float moveSpeed = 5.0f;
     public float jumpForce = 10.0f;
+
     [SerializeField] private bool _isGrounded = false;
     [SerializeField] private bool _isJumping = false;
 
@@ -51,5 +58,31 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit(Collider other){
         if (other.CompareTag("Ground"))
             _isGrounded = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("LevelUp")){
+            if (score.score >= score.scorePlusCost[score.scorePlusLvl]){
+                score.score -= score.scorePlusCost[score.scorePlusLvl];
+                score.scorePlusLvl++;
+                score.plusCostText.text = $"Стоимость: {score.scorePlusCost[score.scorePlusLvl]}";
+                score.scoreText.text = $"Очков: {score.score}";
+                score.scorePlus++;
+                score.scorePlusText.text = $"Очков за удар: {score.scorePlus}";
+            }
+            else
+                StartCoroutine(HighlightText());
+        }
+    }
+
+    private IEnumerator HighlightText()
+    {
+        Color originalColor = score.plusCostText.color;
+        score.plusCostText.color = highlightColor;
+
+        yield return new WaitForSeconds(0.5f); // Измените этот параметр на ваш выбор
+
+        score.plusCostText.color = originalColor;
     }
 }

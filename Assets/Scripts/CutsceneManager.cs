@@ -51,7 +51,7 @@ public class CutsceneManager : MonoBehaviour
         // Если cutsceneDataBase не содежит катсцены с cutsceneKey то упоминаем об этом в консоли и не выполняем весь остальной метод
         if (!cutsceneDataBase.ContainsKey(cutsceneKey)) 
         {
-            Debug.LogError($"�������� c ������ \"{cutsceneKey}\" ���� � cutsceneDataBase");
+            Debug.LogError($"Катсцены c ключом \"{cutsceneKey}\" нет в cutsceneDataBase");
             return;
         } 
 
