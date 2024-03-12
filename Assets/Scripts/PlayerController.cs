@@ -72,17 +72,41 @@ public class PlayerController : MonoBehaviour
                 score.scorePlusText.text = $"Очков за удар: {score.scorePlus}";
             }
             else
-                StartCoroutine(HighlightText());
+                StartCoroutine(RedPlusText());
+        }
+        else if (collision.gameObject.CompareTag("IdleLvlUp")){
+            if (score.score >= score.idleCost[score.idleLvl]){
+                score.score -= score.idleCost[score.idleLvl];
+                score.idleLvl++;
+                if (score.idleLvl == 1)
+                    score.StartAllCoroutine();
+                score.idleCostText.text = $"Стоимость: {score.idleCost[score.idleLvl]}";
+                score.scoreText.text = $"Очков: {score.score}";
+                score.idlePlus += 10;
+                score.idleText.text = $"Очков в секунду: {score.idlePlus}";
+            }
+            else
+                StartCoroutine(RedIdleText());
         }
     }
 
-    private IEnumerator HighlightText()
+    private IEnumerator RedPlusText()
     {
         Color originalColor = score.plusCostText.color;
         score.plusCostText.color = highlightColor;
 
-        yield return new WaitForSeconds(0.5f); // Измените этот параметр на ваш выбор
+        yield return new WaitForSeconds(0.5f);
 
         score.plusCostText.color = originalColor;
+    }
+
+    private IEnumerator RedIdleText()
+    {
+        Color originalColor = score.plusCostText.color;
+        score.idleCostText.color = highlightColor;
+
+        yield return new WaitForSeconds(0.5f);
+
+        score.idleCostText.color = originalColor;
     }
 }
