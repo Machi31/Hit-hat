@@ -63,27 +63,29 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("LevelUp")){
-            if (score.score >= score.scorePlusCost[score.scorePlusLvl]){
-                score.score -= score.scorePlusCost[score.scorePlusLvl];
+            if (score.score >= score.scorePlusCost){
+                score.score -= score.scorePlusCost;
                 score.scorePlusLvl++;
-                score.plusCostText.text = $"Стоимость: {score.scorePlusCost[score.scorePlusLvl]}";
-                score.scoreText.text = $"Очков: {score.score}";
-                score.scorePlus++;
-                score.scorePlusText.text = $"Очков за удар: {score.scorePlus}";
+                score.scoreText.text = $"Очков: {NumberFormatter.FormatNumber(score.score)}";
+                score.scorePlus *= 1.5f;
+                score.scorePlusCost *= 1.75f;
+                score.scorePlusText.text = $"Очков за удар: {NumberFormatter.FormatNumber(score.scorePlus)}";
+                score.plusCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.scorePlusCost)}";
             }
             else
                 StartCoroutine(RedPlusText());
         }
         else if (collision.gameObject.CompareTag("IdleLvlUp")){
-            if (score.score >= score.idleCost[score.idleLvl]){
-                score.score -= score.idleCost[score.idleLvl];
+            if (score.score >= score.idleCost){
+                score.score -= score.idleCost;
                 score.idleLvl++;
                 if (score.idleLvl == 1)
                     score.StartAllCoroutine();
-                score.idleCostText.text = $"Стоимость: {score.idleCost[score.idleLvl]}";
-                score.scoreText.text = $"Очков: {score.score}";
-                score.idlePlus += 10;
-                score.idleText.text = $"Очков в секунду: {score.idlePlus}";
+                score.scoreText.text = $"Очков: {NumberFormatter.FormatNumber(score.score)}";
+                score.idlePlus *= 2.5f;
+                score.idleCost *= 2.7f;
+                score.idleText.text = $"Очков в секунду: {NumberFormatter.FormatNumber(score.idlePlus)}";
+                score.idleCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.scorePlusCost)}";
             }
             else
                 StartCoroutine(RedIdleText());

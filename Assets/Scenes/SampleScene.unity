@@ -2662,12 +2662,12 @@ MonoBehaviour:
   scoreText: {fileID: 153764641}
   scorePlus: 1
   scorePlusLvl: 0
-  scorePlusCost: 0a00000019000000320000006400000096000000
+  scorePlusCost: 10
   scorePlusText: {fileID: 568554329}
   plusCostText: {fileID: 808113600}
-  idlePlus: 0
+  idlePlus: 4
   idleLvl: 0
-  idleCost: 64000000fa000000f4010000e8030000dc050000
+  idleCost: 250
   idleText: {fileID: 1150795465}
   idleCostText: {fileID: 1469576033}
 --- !u!1 &2093764896
