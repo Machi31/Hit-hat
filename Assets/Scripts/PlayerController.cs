@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public ObjectsToActive objToAct;
     public Score score;
 
     public Camera playerCamera;
@@ -67,10 +68,20 @@ public class PlayerController : MonoBehaviour
                 score.score -= score.scorePlusCost;
                 score.scorePlusLvl++;
                 score.scoreText.text = $"Очков: {NumberFormatter.FormatNumber(score.score)}";
-                score.scorePlus *= 1.5f;
-                score.scorePlusCost *= 1.75f;
+                if (score.scorePlusLvl % 10 == 0){
+                    score.scorePlus *= 10;
+                }
+                else
+                    score.scorePlus *= 1.5f;
+                if (score.scorePlusLvl % 25 == 0)
+                    score.scorePlusCost *= 5f;
+                else
+                    score.scorePlusCost *= 1.75f;
                 score.scorePlusText.text = $"Очков за удар: {NumberFormatter.FormatNumber(score.scorePlus)}";
-                score.plusCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.scorePlusCost)}";
+                if (score.scorePlusLvl + 1 % 10 == 0)
+                    score.plusCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.scorePlusCost)} /n Следующий уровень: {NumberFormatter.FormatNumber(score.scorePlus)} x 5!";
+                else
+                    score.plusCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.scorePlusCost)}";
             }
             else
                 StartCoroutine(RedPlusText());
@@ -82,10 +93,21 @@ public class PlayerController : MonoBehaviour
                 if (score.idleLvl == 1)
                     score.StartAllCoroutine();
                 score.scoreText.text = $"Очков: {NumberFormatter.FormatNumber(score.score)}";
-                score.idlePlus *= 2.5f;
-                score.idleCost *= 2.7f;
+                if (score.idleLvl % 5 == 0)
+                    objToAct.ActiveObjects();
+                if (score.idleLvl % 10 == 0)
+                    score.idlePlus *= 7;
+                else
+                    score.idlePlus *= 2.5f;
+                if (score.idleLvl % 25 == 0)
+                    score.idleCost *= 10f;
+                else
+                    score.idleCost *= 3.35f;
                 score.idleText.text = $"Очков в секунду: {NumberFormatter.FormatNumber(score.idlePlus)}";
-                score.idleCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.scorePlusCost)}";
+                if (score.idleLvl + 1 % 10 == 0)
+                    score.idleCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.idleCost)} /n Следующий уровень: {NumberFormatter.FormatNumber(score.idlePlus)} x 7!";
+                else
+                    score.idleCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(score.idleCost)}";
             }
             else
                 StartCoroutine(RedIdleText());
