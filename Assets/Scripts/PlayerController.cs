@@ -15,54 +15,60 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _isGrounded = false;
     [SerializeField] private bool _isJumping = false;
+    public bool _canMove = true;
 
     private Rigidbody rb;
+    public Animator anim;
+    public GameObject activePlayer;
 
     private void Start(){
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update(){
-        float horizontal = Input.GetAxis("Horizontal"); // Получение горизонтального движения
-        float vertical = Input.GetAxis("Vertical"); // Получение вертикального движения
+        if (_canMove){
+            float horizontal = Input.GetAxis("Horizontal"); // Получение горизонтального движения
+            float vertical = Input.GetAxis("Vertical"); // Получение вертикального движения
 
-        Vector3 moveDirection = new(horizontal, 0, vertical);
+            if ((horizontal!= 0 || vertical!= 0) && activePlayer.activeSelf)
+                anim.SetBool("Run", true);
+            else
+                anim.SetBool("Run", false);
 
-        if (moveDirection != Vector3.zero){
-            // Получаем угол поворота камеры
-            float targetAngle = Camera.main.transform.eulerAngles.y;
-            // Создаем кватернион поворота вокруг оси Y
-            Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
-            // Поворачиваем игрока в нужном направлении
-            transform.rotation = targetRotation;
-        }
+            Vector3 moveDirection = new(vertical, 0, -horizontal);
 
-        transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.Self); // Перемещение относительно себя
-        
-        if (Input.GetKey(KeyCode.Space) && _isGrounded && !_isJumping){
-            Jump();
-            _isJumping = true;
+            if (moveDirection != Vector3.zero){
+                // Получаем угол поворота камеры
+                float targetAngle = Camera.main.transform.eulerAngles.y;
+                // Создаем кватернион поворота вокруг оси Y
+                Quaternion targetRotation = Quaternion.Euler(0, targetAngle - 90f, 0);
+                // Поворачиваем игрока в нужном направлении
+                transform.rotation = targetRotation;
+            }
+
+            transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.Self); // Перемещение относительно себя
+            
+            if (Input.GetKey(KeyCode.Space) && _isGrounded && !_isJumping){
+                Jump();
+                _isGrounded = false;
+                _isJumping = true;
+            }
         }
     }
 
     private void Jump(){
+        anim.SetTrigger("Jump");
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
-
-    private void OnTriggerEnter(Collider other){
-        if (other.CompareTag("Ground")){
-            _isGrounded = true;
-            _isJumping = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other){
-        if (other.CompareTag("Ground"))
-            _isGrounded = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ground")){
+            anim.SetTrigger("Land");
+            _isGrounded = true;
+            _isJumping = false;
+        }
+
         if (collision.gameObject.CompareTag("LevelUp")){
             if (score.score >= score.scorePlusCost){
                 score.score -= score.scorePlusCost;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectsToActive : MonoBehaviour
 {
+    public PlayerController player;
     public Score score;
 
     public GameObject[] gameObjectsActive;
@@ -17,6 +18,9 @@ public class ObjectsToActive : MonoBehaviour
                     gameObjectsActive[i / 5 - 1].SetActive(true);
                     break;
                 case 10:
+                    gameObjectsInactive[1].SetActive(false);
+                    gameObjectsActive[i / 5 - 1].SetActive(true);
+                    break;
                 case 15:
                 case 20:
                 case 25:
@@ -37,14 +41,25 @@ public class ObjectsToActive : MonoBehaviour
                 gameObjectsActive[i / 5 - 1].SetActive(true);
                 break;
             case 10:
+                gameObjectsInactive[1].SetActive(false);
+                gameObjectsActive[i / 5 - 1].SetActive(true);
+                CutsceneManager.Instance.StartCutscene("World");
+                break;
+            case 25:
+                gameObjectsActive[i / 5 - 1].SetActive(true);
+                CutsceneManager.Instance.StartCutscene("Buildings");
+                break;
             case 15:
             case 20:
-            case 25:
             case 30:
             case 35:
             case 40:
-            case 45:
                 gameObjectsActive[i / 5 - 1].SetActive(true);
+                break;
+            case 45:
+                player._canMove = false;
+                gameObjectsActive[i / 5 - 1].SetActive(true);
+                CutsceneManager.Instance.StartCutscene("All");
                 break;
         }
     }
