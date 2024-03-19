@@ -9,6 +9,7 @@ TagManager:
   - LevelUp
   - IdleLvlUp
   - Ad
+  - Reset
   layers:
   - Default
   - TransparentFX

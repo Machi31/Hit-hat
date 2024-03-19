@@ -17,12 +17,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Update()
-    {
-        // Проверяем, завершилось ли проигрывание текущего аудиофайла
-        if (!audioSources[currentAudioIndex].isPlaying)
-            // Если да, запускаем следующий аудиофайл
-            PlayNextAudio();
-        
+    {        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Освобождаем захват курсора и делаем его видимым
@@ -37,5 +32,6 @@ public class GameManager : MonoBehaviour
         currentAudioIndex = Random.Range(0, audioSources.Length);
         // Запускаем проигрывание нового аудиофайла
         audioSources[currentAudioIndex].Play();
+        Debug.Log($"Сейчас играет трек номер {currentAudioIndex}");
     }
 }

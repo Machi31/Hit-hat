@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public Animator anim;
     public GameObject activePlayer;
+    public Transform startPos;
     public AudioSource[] steps;
 
     private void Start(){
@@ -152,6 +153,11 @@ public class PlayerController : MonoBehaviour
             YandexGame.RewVideoShow(0);
             Rewarded();
         }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Reset"))
+            transform.position = startPos.position;
     }
 
     public void Rewarded(){
