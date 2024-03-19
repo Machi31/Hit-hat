@@ -57,7 +57,6 @@ public class ObjectsToActive : MonoBehaviour
                 gameObjectsActive[i / 5 - 1].SetActive(true);
                 break;
             case 45:
-                player._canMove = false;
                 gameObjectsActive[i / 5 - 1].SetActive(true);
                 CutsceneManager.Instance.StartCutscene("All");
                 break;

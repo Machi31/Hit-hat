@@ -8,6 +8,7 @@ TagManager:
   - PointsPlus
   - LevelUp
   - IdleLvlUp
+  - Ad
   layers:
   - Default
   - TransparentFX
