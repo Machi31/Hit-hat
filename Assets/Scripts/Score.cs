@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
+    public ObjectsToActive objToAct;
+
+    [SerializeField] private bool _first = true;
+
     // * Данные для очков
     public float score;
     public TMP_Text scoreText;
@@ -26,13 +30,36 @@ public class Score : MonoBehaviour
     public TMP_Text adText;
 
     private void Start(){
-        score = PlayerPrefs.GetFloat("score");
-        scorePlus = PlayerPrefs.GetFloat("scorePlus");
-        scorePlusCost = PlayerPrefs.GetFloat("scorePlusCost");
-        scorePlusLvl = PlayerPrefs.GetInt("scorePlusLvl");
-        idlePlus = PlayerPrefs.GetFloat("idlePlus");
-        idleLvl = PlayerPrefs.GetInt("idleLvl");
-        idleCost = PlayerPrefs.GetFloat("idleCost");
+        _first = PlayerPrefsX.GetBool("first");
+        if (_first){
+            score = PlayerPrefs.GetFloat("score");
+            scorePlus = PlayerPrefs.GetFloat("scorePlus");
+            scorePlusCost = PlayerPrefs.GetFloat("scorePlusCost");
+            scorePlusLvl = PlayerPrefs.GetInt("scorePlusLvl");
+            idlePlus = PlayerPrefs.GetFloat("idlePlus");
+            idleLvl = PlayerPrefs.GetInt("idleLvl");
+            idleCost = PlayerPrefs.GetFloat("idleCost");
+        }
+        else{
+            score = 0;
+            scorePlus = 1;
+            scorePlusCost = 10;
+            scorePlusLvl = 0;
+            idlePlus = 4;
+            idleLvl = 0;
+            idleCost = 250;
+            PlayerPrefs.SetFloat("score", score);
+            PlayerPrefs.SetFloat("scorePlus", scorePlus);
+            PlayerPrefs.SetFloat("scorePlusCost", scorePlusCost);
+            PlayerPrefs.SetInt("scorePlusLvl", scorePlusLvl);
+            PlayerPrefs.SetFloat("idlePlus", idlePlus);
+            PlayerPrefs.SetInt("idleLvl", idleLvl);
+            PlayerPrefs.SetFloat("idleCost", idleCost);
+
+            _first = true;
+            PlayerPrefsX.SetBool("first", _first);
+        }
+
         scoreText.text = $"Очков: {NumberFormatter.FormatNumber(score)}";
         scorePlusText.text = $"Очков за удар: {NumberFormatter.FormatNumber(scorePlus)}";
         plusCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(scorePlusCost)}";
@@ -46,6 +73,8 @@ public class Score : MonoBehaviour
             adText.text = $"За просмотр рекламы: {NumberFormatter.FormatNumber(idlePlus * 120)}";
             StartCoroutine(IdleScore());
         }
+
+        objToAct.StartObjToAct();
     }
 
     private void OnCollisionEnter(Collision other){

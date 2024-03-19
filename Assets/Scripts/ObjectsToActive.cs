@@ -10,7 +10,7 @@ public class ObjectsToActive : MonoBehaviour
     public GameObject[] gameObjectsActive;
     public GameObject[] gameObjectsInactive;
 
-    private void Start(){
+    public void StartObjToAct(){
         for(int i = 0; i < score.idleLvl; i++){
             switch(i){
                 case 5:
