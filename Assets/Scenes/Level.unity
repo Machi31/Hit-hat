@@ -4963,7 +4963,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.3
+  m_fontSize: 50.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7625,7 +7625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246637315}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04550816, y: 0.70543444, z: -0.045481436, w: 0.70584893}
+  m_LocalRotation: {x: 0.04550817, y: 0.7054344, z: -0.045481436, w: 0.705849}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16090,7 +16090,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.15
+  m_fontSize: 50.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -25582,7 +25582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892778441}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5238825, z: -0, w: 0.85179055}
+  m_LocalRotation: {x: -0, y: 0.523131, z: -0, w: 0.85225224}
   m_LocalPosition: {x: 16.9, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27498,7 +27498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04550816, y: 0.70543444, z: -0.04548144, w: 0.705849}
+  m_LocalRotation: {x: 0.04550817, y: 0.7054344, z: -0.045481436, w: 0.70584905}
   m_LocalPosition: {x: -27.899998, y: 3.58, z: 504.79294}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29867,11 +29867,11 @@ MonoBehaviour:
     roll: 0
   - position: {x: 53.95837, y: 0, z: -109.885956}
     roll: 0
-  - position: {x: -42.12216, y: 0, z: -65.06839}
+  - position: {x: -71.69382, y: 0, z: -70.080536}
     roll: 0
-  - position: {x: -76.108444, y: 0, z: 55.036407}
+  - position: {x: -110.191025, y: 0, z: 69.571625}
     roll: 0
-  - position: {x: 0.44561958, y: 0, z: 76.12149}
+  - position: {x: -3.0628853, y: 0, z: 113.712616}
     roll: 0
   - position: {x: 70.46324, y: 0, z: 92.97604}
     roll: 0
@@ -33823,7 +33823,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.3
+  m_fontSize: 50.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -63871,8 +63871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e9136b43865a4684b81d76c118d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToAct: {fileID: 140804744}
-  _first: 1
   score: 0
   scoreText: {fileID: 153764641}
   scorePlus: 1
