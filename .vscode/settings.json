@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "Hit Hat.sln"
+    "dotnet.defaultSolution": "Hit-hat.sln"
 }
