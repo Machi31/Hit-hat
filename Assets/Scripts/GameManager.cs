@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public AudioSource[] audioSources; // Массив аудиоисточников для проигрывания аудиофайлов
+    private AudioClip audioClip;
     private int currentAudioIndex = 0; // Индекс текущего проигрываемого аудиофайла
 
     void Start()
@@ -17,12 +18,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Update()
-    {
-        // Проверяем, завершилось ли проигрывание текущего аудиофайла
-        if (!audioSources[currentAudioIndex].isPlaying)
-            // Если да, запускаем следующий аудиофайл
-            PlayNextAudio();
-        
+    {        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Освобождаем захват курсора и делаем его видимым
@@ -37,5 +33,13 @@ public class GameManager : MonoBehaviour
         currentAudioIndex = Random.Range(0, audioSources.Length);
         // Запускаем проигрывание нового аудиофайла
         audioSources[currentAudioIndex].Play();
+        audioClip = audioSources[currentAudioIndex].clip;
+        StartCoroutine(PlayNextAudioCoroutine(audioClip));
+    }
+
+    IEnumerator PlayNextAudioCoroutine(AudioClip clip){
+        float a = clip.length;
+        yield return new WaitForSeconds(a);
+        PlayNextAudio();
     }
 }

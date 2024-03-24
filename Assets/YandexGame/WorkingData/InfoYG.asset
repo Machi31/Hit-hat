@@ -26,7 +26,7 @@ MonoBehaviour:
   showFirstAd: 1
   rewardedAfterClosing: 1
   adDisplayCalls: 0
-  fullscreenAdInterval: 60
+  fullscreenAdInterval: 180
   durationOfAdSimulation: 0.5
   loadAdWithDelaySimulation: 0
   testErrorOfRewardedAdsInEditor: 0
@@ -217,36 +217,6 @@ MonoBehaviour:
     hi: 0
   fonts:
     defaultFont: []
-    ru: []
-    en: []
-    tr: []
-    az: []
-    be: []
-    he: []
-    hy: []
-    ka: []
-    et: []
-    fr: []
-    kk: []
-    ky: []
-    lt: []
-    lv: []
-    ro: []
-    tg: []
-    tk: []
-    uk: []
-    uz: []
-    es: []
-    pt: []
-    ar: []
-    id: []
-    ja: []
-    it: []
-    de: []
-    hi: []
-  fontsTMP:
-    defaultFont:
-    - {fileID: 11400000, guid: 3fa1bbd48caad66498d2e675873bef2c, type: 2}
     ru: []
     en: []
     tr: []

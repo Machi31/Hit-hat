@@ -94,6 +94,8 @@ public class TimerBeforeAdsYG : MonoBehaviour
                 process = false;
             }
         }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     IEnumerator BackupTimerClosure()
