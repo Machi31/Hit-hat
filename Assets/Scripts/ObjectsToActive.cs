@@ -14,21 +14,32 @@ public class ObjectsToActive : MonoBehaviour
         for(int i = 0; i < score.idleLvl; i++){
             switch(i){
                 case 5:
-                    gameObjectsInactive[0].SetActive(false);
+                    gameObjectsInactive[i / 5 - 1].SetActive(false);
                     gameObjectsActive[i / 5 - 1].SetActive(true);
                     break;
                 case 10:
-                    gameObjectsInactive[1].SetActive(false);
+                    gameObjectsInactive[i / 5 - 1].SetActive(false);
                     gameObjectsActive[i / 5 - 1].SetActive(true);
                     break;
                 case 15:
+                    gameObjectsInactive[i / 5 - 1].SetActive(false);
+                    gameObjectsActive[i / 5 - 1].SetActive(true);
+                    break;
                 case 20:
+                    gameObjectsInactive[i / 5 - 1].SetActive(false);
+                    gameObjectsActive[i / 5 - 1].SetActive(true);
+                    break;
                 case 25:
+                    gameObjectsInactive[i / 5 - 1].SetActive(false);
+                    gameObjectsActive[i / 5 - 1].SetActive(true);
+                    break;
                 case 30:
                 case 35:
                 case 40:
                 case 45:
                     gameObjectsActive[i / 5 - 1].SetActive(true);
+                    break;
+                default:
                     break;
             }
         }
@@ -37,28 +48,32 @@ public class ObjectsToActive : MonoBehaviour
         int i = score.idleLvl;
         switch(i){
             case 5:
-                gameObjectsInactive[0].SetActive(false);
+                gameObjectsInactive[i / 5 - 1].SetActive(false);
                 gameObjectsActive[i / 5 - 1].SetActive(true);
                 break;
             case 10:
-                gameObjectsInactive[1].SetActive(false);
+                gameObjectsInactive[i / 5 - 1].SetActive(false);
                 gameObjectsActive[i / 5 - 1].SetActive(true);
-                CutsceneManager.Instance.StartCutscene("World");
-                break;
-            case 25:
-                gameObjectsActive[i / 5 - 1].SetActive(true);
-                CutsceneManager.Instance.StartCutscene("Buildings");
                 break;
             case 15:
+                gameObjectsInactive[i / 5 - 1].SetActive(false);
+                gameObjectsActive[i / 5 - 1].SetActive(true);
+                break;
             case 20:
+                gameObjectsInactive[i / 5 - 1].SetActive(false);
+                gameObjectsActive[i / 5 - 1].SetActive(true);
+                break;
+            case 25:
+                gameObjectsInactive[i / 5 - 1].SetActive(false);
+                gameObjectsActive[i / 5 - 1].SetActive(true);
+                break;
             case 30:
             case 35:
             case 40:
-                gameObjectsActive[i / 5 - 1].SetActive(true);
-                break;
             case 45:
                 gameObjectsActive[i / 5 - 1].SetActive(true);
-                CutsceneManager.Instance.StartCutscene("All");
+                break;
+            default:
                 break;
         }
     }

@@ -25,39 +25,40 @@ public class Score : MonoBehaviour
 
     // * Данные для очков за рекламу
     public TMP_Text adText;
+    public GameObject ad;
 
     [SerializeField] bool _isFirst;
 
     private void Start(){
-        // _isFirst = PlayerPrefsX.GetBool("isFirst");
-        // if (_isFirst){
-        //     score = PlayerPrefs.GetFloat("score");
-        //     scorePlus = PlayerPrefs.GetFloat("scorePlus");
-        //     scorePlusCost = PlayerPrefs.GetFloat("scorePlusCost");
-        //     scorePlusLvl = PlayerPrefs.GetInt("scorePlusLvl");
-        //     idlePlus = PlayerPrefs.GetFloat("idlePlus");
-        //     idleLvl = PlayerPrefs.GetInt("idleLvl");
-        //     idleCost = PlayerPrefs.GetFloat("idleCost");
-        // }
-        // else{
-        //     scorePlus = 1;
-        //     scorePlusCost = 10;
-        //     idlePlus = 4;
-        //     idleCost = 250;
-        //     PlayerPrefs.SetFloat("scorePlus", scorePlus);
-        //     PlayerPrefs.SetFloat("scorePlusCost", scorePlusCost);
-        //     PlayerPrefs.SetFloat("idlePlus", idlePlus);
-        //     PlayerPrefs.SetFloat("idleCost", idleCost);
-        //     _isFirst = true;
-        //     PlayerPrefsX.SetBool("isFirst", _isFirst);
-        // }
+        _isFirst = PlayerPrefsX.GetBool("isFirst");
+        if (_isFirst){
+            score = PlayerPrefs.GetFloat("score");
+            scorePlus = PlayerPrefs.GetFloat("scorePlus");
+            scorePlusCost = PlayerPrefs.GetFloat("scorePlusCost");
+            scorePlusLvl = PlayerPrefs.GetInt("scorePlusLvl");
+            idlePlus = PlayerPrefs.GetFloat("idlePlus");
+            idleLvl = PlayerPrefs.GetInt("idleLvl");
+            idleCost = PlayerPrefs.GetFloat("idleCost");
+        }
+        else{
+            scorePlus = 1;
+            scorePlusCost = 10;
+            idlePlus = 4;
+            idleCost = 250;
+            PlayerPrefs.SetFloat("scorePlus", scorePlus);
+            PlayerPrefs.SetFloat("scorePlusCost", scorePlusCost);
+            PlayerPrefs.SetFloat("idlePlus", idlePlus);
+            PlayerPrefs.SetFloat("idleCost", idleCost);
+            _isFirst = true;
+            PlayerPrefsX.SetBool("isFirst", _isFirst);
+        }
         scoreText.text = $"Очков: {NumberFormatter.FormatNumber(score)}";
         scorePlusText.text = $"Очков за удар: {NumberFormatter.FormatNumber(scorePlus)}";
         plusCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(scorePlusCost)}";
         idleCostText.text = $"Стоимость: {NumberFormatter.FormatNumber(idleCost)}";
         if (idleLvl == 0){
             idleText.text = $"Очков в секунду: 0";
-            adText.text = $"За просмотр рекламы: 0 =)";
+            ad.SetActive(false);
         }
         else if (idleLvl > 0){
             idleText.text = $"Очков в секунду: {NumberFormatter.FormatNumber(idlePlus)}";
